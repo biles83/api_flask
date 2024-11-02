@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from flask import Flask, make_response, jsonify, request
+from json import loads, dumps
 
 bd_full = []
 for year in range(2021, 2024):
@@ -49,11 +50,14 @@ for year in range(2021, 2024):
     # dataframe.to_csv('prod_'+str(year)+'.csv', index=False)
 # dataframe = pd.DataFrame(bd_full, columns=["ano", "item", "sub_item", "valor"])
 
-df_full = pd.DataFrame(bd_full[0])
+df_producao = pd.DataFrame(bd_full[0])
 i = 1
 
 for i in range(len(bd_full)):
     df_temp = pd.DataFrame(bd_full[i])
-    df_full = pd.concat([df_full, df_temp])
+    df_producao = pd.concat([df_producao, df_temp])
 
-df_full.to_csv('prod.csv', index=False, encoding=' Latin-1')
+df_producao.columns = ['Ano', 'Item', 'Sub_item', 'Valor']
+# df_producao.to_csv('prod.csv', index=False, encoding=' Latin-1')
+producao = df_producao.to_json(orient='records')
+producao = loads(producao)
