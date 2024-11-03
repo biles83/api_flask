@@ -5,8 +5,45 @@ from scrapp.comercial import comercial
 from scrapp.importacao import importacao
 from scrapp.exportacao import exportacao
 
+from flask import Flask, jsonify
+from flask_restful import Api, Resource
+from flask_httpauth import HTTPBasicAuth
+
 app = Flask(__name__)
+api = Api(app)
 app.config['JSON_SORT_KEYS'] = False
+
+# ----------------------------
+# Autenticação Simples
+# ----------------------------
+
+auth = HTTPBasicAuth()
+USER_DATA = {
+    "Username": "password"
+}
+
+
+@auth.verify_password
+def verify(username, password):
+    if not (username and password):
+        return False
+    return USER_DATA.get(username) == password
+
+
+@auth.verify_password
+def verify(username, password):
+    if not (username and password):
+        return False
+    return USER_DATA.get(username) == password
+
+
+class endpoint(Resource):
+    @auth.login_required
+    def get(self):
+        return jsonify({"status": True})
+
+
+api.add_resource(endpoint, "/")
 
 # ----------------------------
 # ROUTES -- Producao
@@ -14,6 +51,7 @@ app.config['JSON_SORT_KEYS'] = False
 
 
 @app.route('/producao', methods=['GET'])
+@auth.login_required
 def get_producao():
     return make_response(
         jsonify(
@@ -24,6 +62,7 @@ def get_producao():
 
 
 @app.route('/producao', methods=['POST'])
+@auth.login_required
 def insert_producao():
     prod = request.json
     producao.append(prod)
@@ -40,6 +79,7 @@ def insert_producao():
 
 
 @app.route('/comercial', methods=['GET'])
+@auth.login_required
 def get_comercial():
     return make_response(
         jsonify(
@@ -50,6 +90,7 @@ def get_comercial():
 
 
 @app.route('/comercial', methods=['POST'])
+@auth.login_required
 def insert_comercial():
     comerc = request.json
     comercial.append(comerc)
@@ -66,6 +107,7 @@ def insert_comercial():
 
 
 @app.route('/processamento', methods=['GET'])
+@auth.login_required
 def get_processa():
     return make_response(
         jsonify(
@@ -76,6 +118,7 @@ def get_processa():
 
 
 @app.route('/processamento', methods=['POST'])
+@auth.login_required
 def insert_processa():
     process = request.json
     processada.append(process)
@@ -93,6 +136,7 @@ def insert_processa():
 
 
 @app.route('/importacao', methods=['GET'])
+@auth.login_required
 def get_importa():
     return make_response(
         jsonify(
@@ -103,6 +147,7 @@ def get_importa():
 
 
 @app.route('/importacao', methods=['POST'])
+@auth.login_required
 def insert_importa():
     importa = request.json
     importacao.append(importa)
@@ -119,6 +164,7 @@ def insert_importa():
 
 
 @app.route('/exportacao', methods=['GET'])
+@auth.login_required
 def get_exporta():
     return make_response(
         jsonify(
@@ -129,6 +175,7 @@ def get_exporta():
 
 
 @app.route('/exportacao', methods=['POST'])
+@auth.login_required
 def insert_exporta():
     exporta = request.json
     exportacao.append(exporta)
@@ -140,4 +187,5 @@ def insert_exporta():
     )
 
 
-app.run()
+if __name__ == "__main__":
+    app.run(port=5000, debug=True)
