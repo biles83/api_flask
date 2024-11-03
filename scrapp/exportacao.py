@@ -60,6 +60,6 @@ for i in range(len(bd_full)):
     df_export = pd.concat([df_export, df_temp])
 
 df_export = df_export.drop_duplicates()  # Removendo duplicados caso exista
-df_export.to_csv('export.csv', index=False, encoding=' Latin-1')
+# df_export.to_csv('export.csv', sep=';', index=False, encoding=' Latin-1')
 exportacao = df_export.to_json(orient='records')
 exportacao = loads(exportacao)

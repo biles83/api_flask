@@ -60,6 +60,6 @@ for i in range(len(bd_full)):
     df_import = pd.concat([df_import, df_temp])
 
 df_import = df_import.drop_duplicates()  # Removendo duplicados caso exista
-df_import.to_csv('import.csv', index=False, encoding=' Latin-1')
+# df_import.to_csv('import.csv', sep=';', index=False, encoding=' Latin-1')
 importacao = df_import.to_json(orient='records')
 importacao = loads(importacao)

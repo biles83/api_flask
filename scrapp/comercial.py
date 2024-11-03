@@ -59,6 +59,6 @@ for i in range(len(bd_full)):
 
 df_comercial = df_comercial.drop_duplicates()  # Removendo duplicados caso exista
 df_comercial.columns = ['Ano', 'Item', 'Sub_item', 'Quantidade']
-df_comercial.to_csv('comercial.csv', index=False, encoding=' Latin-1')
+# df_comercial.to_csv('comercial.csv', sep=';', index=False, encoding=' Latin-1')
 comercial = df_comercial.to_json(orient='records')
 comercial = loads(comercial)

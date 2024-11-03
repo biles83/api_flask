@@ -57,6 +57,6 @@ for i in range(len(bd_full)):
 df_producao = df_producao.drop_duplicates()  # Removendo duplicados caso exista
 
 df_producao.columns = ['Ano', 'Item', 'Sub_item', 'Quantidade']
-df_producao.to_csv('prod.csv', index=False, encoding=' Latin-1')
+# df_producao.to_csv('prod.csv', sep=';', index=False, encoding=' Latin-1')
 producao = df_producao.to_json(orient='records')
 producao = loads(producao)
