@@ -8,7 +8,7 @@ bd_full = []
 for year in range(2021, 2024):
 
     url = 'http://vitibrasil.cnpuv.embrapa.br/index.php?ano=' + \
-        str(year)+'&opcao=opt_02'
+        str(year)+'&opcao=opt_04'
     response = requests.get(url)
 
     # Verificando se a requisição foi bem-sucedida
@@ -50,14 +50,14 @@ for year in range(2021, 2024):
     # dataframe.to_csv('prod_'+str(year)+'.csv', index=False)
 # dataframe = pd.DataFrame(bd_full, columns=["ano", "item", "sub_item", "valor"])
 
-df_producao = pd.DataFrame(bd_full[0])
+df_comercial = pd.DataFrame(bd_full[0])
 i = 1
 
 for i in range(len(bd_full)):
     df_temp = pd.DataFrame(bd_full[i])
-    df_producao = pd.concat([df_producao, df_temp])
+    df_comercial = pd.concat([df_comercial, df_temp])
 
-df_producao.columns = ['Ano', 'Item', 'Sub_item', 'Quantidade']
-# df_producao.to_csv('prod.csv', index=False, encoding=' Latin-1')
-producao = df_producao.to_json(orient='records')
-producao = loads(producao)
+df_comercial.columns = ['Ano', 'Item', 'Sub_item', 'Quantidade']
+# df_comercial.to_csv('comercial.csv', index=False, encoding=' Latin-1')
+comercial = df_comercial.to_json(orient='records')
+comercial = loads(comercial)
