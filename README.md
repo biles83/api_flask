@@ -13,34 +13,38 @@ Este é um projeto de API desenvolvido com Flask, que inclui operações CRUD, w
 
 ```bash
 intro_api/
-├── app/
+├── api_flask/
 │   ├── __init__.py
-│   ├── routes/
-│   │   ├── __init__.py
+│   ├── api/
 │   │   ├── auth_routes.py
 │   │   ├── crud_routes.py
-│   │   └── scrape_routes.py
+│   │   ├── scrape_routes.py
+│   │   └── services/
+│   │       ├── __init__.py
+│   │       ├── comercial.py
+│   │       ├── exportacao.py
+│   │       ├── importacao.py
+│   │       ├── processada.py
+│   │       └── prod.py
 │   ├── services/
 │   │   ├── __init__.py
-│   │   └── scraping_service.py
-│   ├── utils/
-│   │   ├── __init__.py
-│   │   └── auth.py
-│   └── config.py
-├── requirements.txt
-├── Dockerfile
-├── README.md
-└── run.py
+│   │   ├── comercial.py
+│   │   ├── exportacao.py
+│   │   ├── importacao.py
+│   │   ├── processada.py
+│   │   └── prod.py
+│   ├── requirements.txt
+│   ├── api.py
+│   ├── README.md
+│   └── vercel.json
 ```
 
-- **`app/`**: Diretório principal do aplicativo.
-  - **`routes/`**: Contém as rotas organizadas por funcionalidades.
+- **`api_flask/`**: Diretório principal do aplicativo.
+  - **`api/`**: Contém os códigos para rodar no Vercel.
   - **`services/`**: Serviços para lógica de negócios, como scraping.
-  - **`utils/`**: Utilitários, como autenticação.
-  - **`config.py`**: Configurações da aplicação Flask.
-- **`run.py`**: Ponto de entrada para iniciar o aplicativo.
+- **`api.py`**: Ponto de entrada para iniciar o aplicativo.
 - **`requirements.txt`**: Lista de dependências do projeto.
-- **`Dockerfile`**: Configurações para Docker.
+- **`vercel.json`**: Configurações para Vercel.
 - **`README.md`**: Documentação do projeto.
 
 ## 🛠️ Como Executar o Projeto
@@ -48,8 +52,8 @@ intro_api/
 ### 1. Clone o Repositório
 
 ```bash
-git clone https://github.com/ileoh/flask_exemplo
-cd my_flask_app
+git clone https://github.com/biles83/api_flask
+cd api_flask
 ```
 
 ### 2. Crie um Ambiente Virtual
@@ -68,7 +72,7 @@ pip install -r requirements.txt
 ### 4. Execute o Aplicativo
 
 ```bash
-python run.py
+python api.py
 ```
 
 O aplicativo estará disponível em `http://localhost:5000`.
