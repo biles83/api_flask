@@ -1,4 +1,4 @@
-# My Flask API
+# Flask API
 
 Este é um projeto de API desenvolvido com Flask, que inclui operações CRUD, web scraping e autenticação básica.
 
@@ -12,31 +12,32 @@ Este é um projeto de API desenvolvido com Flask, que inclui operações CRUD, w
 ## 📁 Estrutura do Projeto
 
 ```bash
-intro_api/
-├── api_flask/
-│   ├── __init__.py
-│   ├── api/
-│   │   ├── auth_routes.py
-│   │   ├── crud_routes.py
-│   │   ├── scrape_routes.py
-│   │   └── services/
-│   │       ├── __init__.py
-│   │       ├── comercial.py
-│   │       ├── exportacao.py
-│   │       ├── importacao.py
-│   │       ├── processada.py
-│   │       └── prod.py
-│   ├── services/
-│   │   ├── __init__.py
-│   │   ├── comercial.py
-│   │   ├── exportacao.py
-│   │   ├── importacao.py
-│   │   ├── processada.py
-│   │   └── prod.py
-│   ├── requirements.txt
-│   ├── api.py
-│   ├── README.md
-│   └── vercel.json
+
+api_flask/
+  ├── __init__.py
+  ├── api/
+  │   ├── auth_routes.py
+  │   ├── crud_routes.py
+  │   ├── scrape_routes.py
+  │   └── services/
+  │       ├── __init__.py
+  │       ├── comercial.py
+  │       ├── exportacao.py
+  │       ├── importacao.py
+  │       ├── processada.py
+  │       └── prod.py
+  ├── services/
+  │   ├── __init__.py
+  │   ├── comercial.py
+  │   ├── exportacao.py
+  │   ├── importacao.py
+  │   ├── processada.py
+  │   └── prod.py
+  ├── requirements.txt
+  ├── Documentação_API.docx
+  ├── api.py
+  ├── README.md
+  └── vercel.json
 ```
 
 - **`api_flask/`**: Diretório principal do aplicativo.
@@ -44,6 +45,7 @@ intro_api/
   - **`services/`**: Serviços para lógica de negócios, como scraping.
 - **`api.py`**: Ponto de entrada para iniciar o aplicativo.
 - **`requirements.txt`**: Lista de dependências do projeto.
+- **`Documentação_API.docx`**: Documentação API.
 - **`vercel.json`**: Configurações para Vercel.
 - **`README.md`**: Documentação do projeto.
 
@@ -77,25 +79,70 @@ python api.py
 
 O aplicativo estará disponível em `http://localhost:5000`.
 
-## 🐳 Como Usar com Docker
+## Vercel
 
-### 1. Construa a Imagem Docker
+A Vercel é uma plataforma voltada para a hospedagem de aplicações de uma forma bem simples e rápida.
+Além disso, possui integração nativa com o GitHub, tornando o processo de deploy extremamente simples.
+
+Para realizar o deploy na Vercel é necessário ter uma conta na Vercel.
+
+📖 Documentação Vercel disponível em `https://vercel.com/docs`.
+
+### 1. Instalação
 
 ```bash
-docker build -t my-flask-api .
+npm i -g vercel
 ```
 
-### 2. Execute o Container
+### 2. Instruções para Deploy
+
+1) Criar o arquivo requirements.txt.
 
 ```bash
-docker run -p 5000:5000 my-flask-api
+pip3 freeze > requirements.txt
 ```
 
-Acesse a aplicação em `http://localhost:5000`.
+2) Criar o arquivo vercel.json conforme template fornecido na documentação da Vercel.
+
+3) Realizar a cópia dos arquivos para uma pasta chamada API.
+
+```bash
+api_flask/
+  ├── api/
+  │   ├── auth_routes.py
+  │   ├── crud_routes.py
+  │   ├── scrape_routes.py
+  │   └── services/
+  │       ├── __init__.py
+  │       ├── comercial.py
+  │       ├── exportacao.py
+  │       ├── importacao.py
+  │       ├── processada.py
+  │       └── prod.py
+  ├── requirements.txt
+  └── vercel.json
+```
+
+4) Realizar o deploy
+
+```bash
+vercel
+```
+
+```bash
+vercel --prod
+```
+
+O aplicativo está disponível em `https://api-flask-ckfopn06e-achiles-projects-02709c7f.vercel.app/`.
 
 ## 📖 Documentação da API
 
-A documentação da API é gerada automaticamente com Swagger e está disponível em `http://localhost:5000/apidocs/`.
+A documentação da API, assim como o desenho da arquitetura do projeto, está disponível em "Documentação_API.docx", na raiz do projeto.
+
+```bash
+api_flask/
+  ├── Documentação_API.docx
+```
 
 ## 🤝 Contribuindo
 
