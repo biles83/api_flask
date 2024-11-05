@@ -43,7 +43,7 @@ for opc in range(1, 5):
 
         bd_full.append(df)
 
-    # Botao
+    # Tipo
     df_export_1 = pd.DataFrame(bd_full[0])
     i = 1
 
@@ -59,6 +59,7 @@ for i in range(len(bd_full)):
     df_temp = pd.DataFrame(bd_full[i])
     df_export = pd.concat([df_export, df_temp])
 
+# Preparando o dataset para a API
 df_export = df_export.drop_duplicates()  # Removendo duplicados caso exista
 df_export['Id'] = df_export.index
 df_export = df_export[['Id', 'Ano', 'Tipo', 'País', 'Quantidade', 'Valor']]

@@ -43,7 +43,7 @@ for opc in range(1, 6):
 
         bd_full.append(df)
 
-    # Botao
+    # Tipo
     df_import_1 = pd.DataFrame(bd_full[0])
     i = 1
 
@@ -59,6 +59,7 @@ for i in range(len(bd_full)):
     df_temp = pd.DataFrame(bd_full[i])
     df_import = pd.concat([df_import, df_temp])
 
+# Preparando o dataset para a API
 df_import = df_import.drop_duplicates()  # Removendo duplicados caso exista
 df_import['Id'] = df_import.index
 df_import = df_import[['Id', 'Ano', 'Tipo', 'País', 'Quantidade', 'Valor']]

@@ -54,8 +54,8 @@ for i in range(len(bd_full)):
     df_temp = pd.DataFrame(bd_full[i])
     df_producao = pd.concat([df_producao, df_temp])
 
+# Preparando o dataset para a API
 df_producao = df_producao.drop_duplicates()  # Removendo duplicados caso exista
-
 df_producao.columns = ['Ano', 'Item', 'Sub_item', 'Quantidade']
 df_producao['Id'] = df_producao.index
 df_producao = df_producao[['Id', 'Ano', 'Item', 'Sub_item', 'Quantidade']]

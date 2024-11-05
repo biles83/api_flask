@@ -30,7 +30,7 @@ for opc in range(1, 5):
         item = ""
         sub_item = ""
         valor = ""
-        for result in teste:  # Exibindo apenas os primeiros 10 links
+        for result in teste:
             i = teste.index(result)
             if i % 2 == 0:
                 text = result.text.strip()
@@ -53,13 +53,6 @@ for opc in range(1, 5):
                     valor = ""
         bd_full.append(bd)
 
-    # Ano
-    # df_process_1 = pd.DataFrame(bd_full[0])
-    # i = 1
-
-    # for i in range(len(bd_full)):
-    #    df_temp = pd.DataFrame(bd_full[i])
-    #    df_process_1 = pd.concat([df_process_1, df_temp])
 
 # Ano
 df_process = pd.DataFrame(bd_full[0])
@@ -69,7 +62,7 @@ for i in range(len(bd_full)):
     df_temp = pd.DataFrame(bd_full[i])
     df_process = pd.concat([df_process, df_temp])
 
-
+# Preparando o dataset para a API
 df_process = df_process.drop_duplicates()  # Removendo duplicados caso exista
 df_process.columns = ['Ano', 'Tipo', 'Item', 'Sub_item', 'Quantidade']
 df_process['Id'] = df_process.index

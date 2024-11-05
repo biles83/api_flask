@@ -24,7 +24,7 @@ for year in range(2021, 2024):
     item = ""
     sub_item = ""
     valor = ""
-    for result in teste:  # Exibindo apenas os primeiros 10 links
+    for result in teste:
         i = teste.index(result)
         if i % 2 == 0:
             text = result.text.strip()
@@ -46,9 +46,6 @@ for year in range(2021, 2024):
                 sub_item = ""
                 valor = ""
     bd_full.append(bd)
-    # dataframe = pd.DataFrame(bd, columns=["ano", "item", "sub_item", "valor"])
-    # dataframe.to_csv('prod_'+str(year)+'.csv', index=False)
-# dataframe = pd.DataFrame(bd_full, columns=["ano", "item", "sub_item", "valor"])
 
 df_comercial = pd.DataFrame(bd_full[0])
 i = 1
@@ -57,6 +54,7 @@ for i in range(len(bd_full)):
     df_temp = pd.DataFrame(bd_full[i])
     df_comercial = pd.concat([df_comercial, df_temp])
 
+# Preparando o dataset para a API
 df_comercial = df_comercial.drop_duplicates()  # Removendo duplicados caso exista
 df_comercial.columns = ['Ano', 'Item', 'Sub_item', 'Quantidade']
 df_comercial['Id'] = df_comercial.index
