@@ -60,6 +60,8 @@ for i in range(len(bd_full)):
     df_export = pd.concat([df_export, df_temp])
 
 df_export = df_export.drop_duplicates()  # Removendo duplicados caso exista
+df_export['Id'] = df_export.index
+df_export = df_export[['Id', 'Ano', 'Tipo', 'País', 'Quantidade', 'Valor']]
 # df_export.to_csv('export.csv', sep=';', index=False, encoding=' Latin-1')
 exportacao = df_export.to_json(orient='records')
 exportacao = loads(exportacao)

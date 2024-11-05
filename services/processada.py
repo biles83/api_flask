@@ -72,6 +72,9 @@ for i in range(len(bd_full)):
 
 df_process = df_process.drop_duplicates()  # Removendo duplicados caso exista
 df_process.columns = ['Ano', 'Tipo', 'Item', 'Sub_item', 'Quantidade']
+df_process['Id'] = df_process.index
+df_process = df_process[['Id', 'Ano', 'Tipo',
+                         'Item', 'Sub_item', 'Quantidade']]
 # df_process.to_csv('processada.csv', sep=';', index=False, encoding=' Latin-1')
 processada = df_process.to_json(orient='records')
 processada = loads(processada)

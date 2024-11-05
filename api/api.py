@@ -1,9 +1,9 @@
 from flask import Flask, make_response, jsonify, request
 from services.prod import producao
-from services.processada import processada
-from services.comercial import comercial
-from services.importacao import importacao
-from services.exportacao import exportacao
+# from services.processada import processada
+# from services.comercial import comercial
+# from services.importacao import importacao
+# from services.exportacao import exportacao
 from flask import Flask, jsonify
 from flask_restful import Api, Resource
 from flask_httpauth import HTTPBasicAuth
@@ -73,6 +73,32 @@ def insert_producao():
     )
 
 
+@app.route('/producao/<int:item_id>', methods=['PUT'])
+@auth.login_required
+def update_producao(item_id):
+    prod = request.get_json()
+    if 0 <= item_id < len(producao):
+        producao[item_id].update(prod)
+        return jsonify(producao[item_id])
+    return jsonify({"error": "Item not found"}), 404
+
+
+@app.route('/producao/<int:item_id>', methods=['DELETE'])
+@auth.login_required
+def delete_producao(item_id):
+    if 0 <= item_id < len(producao):
+        removed = producao.pop(item_id)
+        # return jsonify(removed)
+        return make_response(
+            jsonify(
+                Mensagem='Produção deletada com sucesso.',
+                Dados=removed
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
+
+
+"""
 # ----------------------------
 # ROUTES -- Comercializacao
 # ----------------------------
@@ -185,7 +211,7 @@ def insert_exporta():
             Dados=exporta
         )
     )
-
+"""
 
 if __name__ == "__main__":
     app.run(debug=True)

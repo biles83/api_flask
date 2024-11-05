@@ -73,6 +73,35 @@ def insert_producao():
     )
 
 
+@app.route('/producao/<int:item_id>', methods=['PUT'])
+@auth.login_required
+def update_producao(item_id):
+    prod = request.get_json()
+    if 0 <= item_id < len(producao):
+        producao[item_id].update(prod)
+        return make_response(
+            jsonify(
+                Mensagem='Produção alterada com sucesso.',
+                Dados=producao[item_id]
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
+
+
+@app.route('/producao/<int:item_id>', methods=['DELETE'])
+@auth.login_required
+def delete_producao(item_id):
+    if 0 <= item_id < len(producao):
+        removed = producao.pop(item_id)
+        return make_response(
+            jsonify(
+                Mensagem='Produção deletada com sucesso.',
+                Dados=removed
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
+
+
 # ----------------------------
 # ROUTES -- Comercializacao
 # ----------------------------
@@ -100,6 +129,36 @@ def insert_comercial():
             Dados=comerc
         )
     )
+
+
+@app.route('/comercial/<int:item_id>', methods=['PUT'])
+@auth.login_required
+def update_comercial(item_id):
+    comerc = request.get_json()
+    if 0 <= item_id < len(comercial):
+        comercial[item_id].update(comerc)
+        return make_response(
+            jsonify(
+                Mensagem='Comercialização alterada com sucesso.',
+                Dados=comercial[item_id]
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
+
+
+@app.route('/comercial/<int:item_id>', methods=['DELETE'])
+@auth.login_required
+def delete_comercial(item_id):
+    if 0 <= item_id < len(comercial):
+        removed = comercial.pop(item_id)
+        return make_response(
+            jsonify(
+                Mensagem='Comercialização deletada com sucesso.',
+                Dados=removed
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
+
 
 # ----------------------------
 # ROUTES -- Processamento
@@ -130,6 +189,35 @@ def insert_processa():
     )
 
 
+@app.route('/processamento/<int:item_id>', methods=['PUT'])
+@auth.login_required
+def update_processa(item_id):
+    process = request.get_json()
+    if 0 <= item_id < len(processada):
+        processada[item_id].update(process)
+        return make_response(
+            jsonify(
+                Mensagem='Processamento alterado com sucesso.',
+                Dados=processada[item_id]
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
+
+
+@app.route('/processamento/<int:item_id>', methods=['DELETE'])
+@auth.login_required
+def delete_processa(item_id):
+    if 0 <= item_id < len(processada):
+        removed = processada.pop(item_id)
+        return make_response(
+            jsonify(
+                Mensagem='Processamento deletado com sucesso.',
+                Dados=removed
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
+
+
 # ----------------------------
 # ROUTES -- Importacao
 # ----------------------------
@@ -153,10 +241,39 @@ def insert_importa():
     importacao.append(importa)
     return make_response(
         jsonify(
-            Mensagem='Importacao cadastrada com sucesso.',
+            Mensagem='Importação cadastrada com sucesso.',
             Dados=importa
         )
     )
+
+
+@app.route('/importacao/<int:item_id>', methods=['PUT'])
+@auth.login_required
+def update_importa(item_id):
+    importa = request.get_json()
+    if 0 <= item_id < len(importacao):
+        importacao[item_id].update(importa)
+        return make_response(
+            jsonify(
+                Mensagem='Importação alterada com sucesso.',
+                Dados=importacao[item_id]
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
+
+
+@app.route('/importacao/<int:item_id>', methods=['DELETE'])
+@auth.login_required
+def delete_importa(item_id):
+    if 0 <= item_id < len(importacao):
+        removed = importacao.pop(item_id)
+        return make_response(
+            jsonify(
+                Mensagem='Importação deletada com sucesso.',
+                Dados=removed
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
 
 # ----------------------------
 # ROUTES -- Exportacao
@@ -185,6 +302,35 @@ def insert_exporta():
             Dados=exporta
         )
     )
+
+
+@app.route('/exportacao/<int:item_id>', methods=['PUT'])
+@auth.login_required
+def update_exporta(item_id):
+    exporta = request.get_json()
+    if 0 <= item_id < len(exportacao):
+        exportacao[item_id].update(exporta)
+        return make_response(
+            jsonify(
+                Mensagem='Exportação alterada com sucesso.',
+                Dados=exportacao[item_id]
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
+
+
+@app.route('/exportacao/<int:item_id>', methods=['DELETE'])
+@auth.login_required
+def delete_exporta(item_id):
+    if 0 <= item_id < len(exportacao):
+        removed = exportacao.pop(item_id)
+        return make_response(
+            jsonify(
+                Mensagem='Exportação deletada com sucesso.',
+                Dados=removed
+            )
+        )
+    return jsonify({"error": "Item not found"}), 404
 
 
 if __name__ == "__main__":
