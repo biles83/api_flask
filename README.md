@@ -133,7 +133,7 @@ vercel
 vercel --prod
 ```
 
-O aplicativo está disponível em `https://api-flask-ckfopn06e-achiles-projects-02709c7f.vercel.app/`.
+O aplicativo está disponível em `https://api-flask-mifef5hbw-achiles-projects-02709c7f.vercel.app`.
 
 ## 📖 Documentação da API
 
